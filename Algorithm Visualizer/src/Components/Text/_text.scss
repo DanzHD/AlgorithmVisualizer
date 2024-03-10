@@ -1,0 +1,68 @@
+@import "../../Styles/_themes.scss";
+@import "../../Styles/_vars.scss";
+
+
+
+@mixin text {
+    font-weight: 400;
+    font-family: "Segue UI", Robot, sans-serif;
+}
+
+
+@mixin header {
+    font-weight: 800;
+}
+
+
+h1.text {
+    @include header;
+    font-size: 24px;
+
+    @media (max-width: $mobile-width) {
+        font-size: 20px;
+    }
+
+}
+
+h2.text {
+    @include header;
+    font-size: 20px;
+
+    @media (max-width: $mobile-width) {
+        font-size: 16px;
+    }
+}
+
+p, h1, h2 {
+    margin: 0;
+    padding: 0;
+    white-space: initial;
+}
+
+p.text {
+    font-size: 16px;
+
+    @media (max-width: $mobile-width) {
+        font-size: 12px;
+    }
+}
+
+br {
+    display: block;
+    line-height: 16px;
+}
+
+@include themify($themes) {
+
+    .text {
+        @include text;
+        color: themed("text");
+        &--small {
+            font-size: 12px !important;
+        }
+
+        &--bold {
+            font-weight: 800;
+        }
+    }
+}
