@@ -5,7 +5,7 @@ import useArraySortContext from "../../Context/ArraySortContext/useArraySortCont
 
 export default function SideBar() {
     const [expanded, setExpanded] = useState(false);
-    const {generateArray} = useArraySortContext();
+    const {generateArray, chooseSort, increaseCount} = useArraySortContext();
 
     const computedSideBarContainerClasses = cx('side-bar-container', {
         'side-bar-container--expanded': expanded
@@ -37,6 +37,10 @@ export default function SideBar() {
                     )}>
                         Generate Array
                     </div>
+                    <div onClick={() => chooseSort()}>
+                        sort
+                    </div>
+                    <div onClick={increaseCount}>Next</div>
                 </div>
             </div>
         </>

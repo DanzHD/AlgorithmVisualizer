@@ -1,4 +1,11 @@
+import {ResultStates} from "./ResultStates.tsx";
+
 export interface ArraySort {
-    numberArray: number[],
-    generateArray: (size: number) => void
+    generateArray: (size: number) => void,
+    selectionSort: () => void,
+    resultStates: ResultStates[],
+    initialNumberArray: number[],
+    count: number,
+    chooseSort: () => void,
+    increaseCount: () => void
 }

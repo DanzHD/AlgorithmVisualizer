@@ -1,3 +1,4 @@
+@import "../../Styles/themes";
 
 .algorithm-view-container {
     display: flex;
@@ -14,7 +15,17 @@
     }
 }
 
-.number {
-    width: 1%;
-    background-color: blue;
+
+
+@include themify($themes) {
+
+    .number {
+        width: 1%;
+        background-color: themed("accent");
+
+        &--red {
+            background-color: red;
+        }
+    }
 }
+
