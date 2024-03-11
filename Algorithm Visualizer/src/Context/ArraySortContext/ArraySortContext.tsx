@@ -36,10 +36,13 @@ export function ArraySortContextProvider({children}: {children: React.ReactNode}
                 setCount(count => count + 1);
 
             }, 20)
+        } else {
+            setPause(true)
         }
 
 
     }, [resultStates, count, pause]);
+
 
     function generateArray(size: number) {
 
@@ -99,7 +102,7 @@ export function ArraySortContextProvider({children}: {children: React.ReactNode}
     }
 
     function insertionSort(): void {
-        let arrayCopy = [...resultStates[0].numberArray];
+        const arrayCopy = [...resultStates[0].numberArray];
         let newResultStates: ResultStates[] | ((prevState: ResultStates[]) => ResultStates[]) = [];
 
         let j;
@@ -122,7 +125,7 @@ export function ArraySortContextProvider({children}: {children: React.ReactNode}
         setResultStates(newResultStates)
     }
 
-    function storeResultState(arrayCopy, i, j, newResultStates) {
+    function storeResultState(arrayCopy: number[], i: number, j: number, newResultStates) {
         arrayCopy = [...arrayCopy]
         const newResultState = {
             comparedNumbers: [i, j],
@@ -132,7 +135,10 @@ export function ArraySortContextProvider({children}: {children: React.ReactNode}
     }
 
     function increaseCount() {
-
+        if (count >= resultStates.length) {
+            setCount(0);
+            return
+        }
         setCount(count => count + 1)
     }
     function decreaseCount() {

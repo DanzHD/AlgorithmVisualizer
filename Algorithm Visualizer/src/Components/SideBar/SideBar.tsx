@@ -11,7 +11,7 @@ import {SortMethods} from "../../Utils/enum.tsx";
 
 export default function SideBar() {
     const [expanded, setExpanded] = useState(false);
-    const {generateArray, chooseSort, setPause, increaseCount, decreaseCount,
+    const {resultStates, count, generateArray, chooseSort, setPause, increaseCount, decreaseCount,
         pause, isSorting, setIsSorting, setCount} = useArraySortContext();
     const sortMethodRef = useRef<HTMLSelectElement>(null);
     const stepByStepCheckBoxRef = useRef<HTMLInputElement>(null);
@@ -109,7 +109,7 @@ export default function SideBar() {
                             <>
                                 <div className="step-by-step-animation">
                                     {
-                                        pause ?
+                                        pause || (count === resultStates.length - 1) ?
                                             <>
                                             <span onClick={decreaseCount} className="material-symbols-outlined">
                                                 arrow_back
@@ -126,8 +126,14 @@ export default function SideBar() {
                                             </span>
                                     }
                                 </div>
+                                {
+                                    isSorting && <Text>Step: {`${count + 1}/${resultStates.length }`}</Text>
+
+                                }
                             </>
+
                         }
+
 
 
                     </div>
