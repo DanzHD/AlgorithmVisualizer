@@ -1,0 +1,45 @@
+@import "../../Styles/themes";
+
+.side-bar-container {
+    width: 38px;
+    height: 100%;
+
+    display: block;
+    position: relative;
+    left: 0;
+    box-sizing: border-box;
+
+    &--expanded {
+        width: 300px;
+    }
+}
+
+.menu--expanded {
+    margin-right: auto;
+}
+
+
+@include themify($themes) {
+
+    .side-bar {
+        padding-left: 4px;
+        padding-right: 4px;
+        background-color: themed("secondary");
+        display: flex;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        justify-content: center;
+        box-sizing: border-box;
+    }
+}
+
+
+
+body {
+    box-sizing: border-box;
+}
+
+.material-symbols-outlined.menu {
+    cursor: pointer;
+}
