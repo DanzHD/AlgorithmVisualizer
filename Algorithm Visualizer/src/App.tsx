@@ -1,8 +1,8 @@
 import "./Styles/_index.scss"
-import Text from "./Components/Text/Text.tsx";
 import "./Styles/App.scss"
 import SideBar from "./Components/SideBar/SideBar.tsx";
 import TopBar from "./Components/TopBar/TopBar.tsx";
+import AlgorithmView from "./Components/AlgorithmView/AlgorithmView.tsx";
 
 
 function App() {
@@ -14,8 +14,7 @@ function App() {
 
             <div className="main-content-section">
                 <SideBar />
-
-                <Text>Hello world</Text>
+                <AlgorithmView />
             </div>
         </>
     )
