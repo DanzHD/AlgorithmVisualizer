@@ -4,7 +4,6 @@ import useArraySortContext from "../../Context/ArraySortContext/useArraySortCont
 import cx from "classnames";
 
 
-
 export default function AlgorithmView() {
     const {resultStates, count} = useArraySortContext()
     function createArrayVisuals(numberArray: number[], comparedNumbers: number[]) {
@@ -28,14 +27,13 @@ export default function AlgorithmView() {
 
     }
 
-
     return (
         <div className="algorithm-view-container">
             <div className="algorithm-view-container__numbers">
 
                 {
 
-                    resultStates.length > 0 && createArrayVisuals(resultStates[count]["numberArray"], resultStates[count]["comparedNumbers"])
+                    (resultStates.length > count) && createArrayVisuals(resultStates[count]["numberArray"], resultStates[count]["comparedNumbers"])
 
                 }
 

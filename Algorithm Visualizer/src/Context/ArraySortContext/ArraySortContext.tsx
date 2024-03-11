@@ -12,19 +12,44 @@ export function ArraySortContextProvider({children}: {children: React.ReactNode}
     const [initialNumberArray] = useState<number[]>([]);
     const [count, setCount] = useState(0);
     const [isSorting, setIsSorting] = useState(false);
+    const [pause, setPause] = useState(false);
+
+    useEffect(() => {
+        generateArray(INITIAL_ARRAY_SIZE);
+
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+    useEffect(() => {
+        if (count >= resultStates.length) {
+            setCount(0)
+        }
+
+        if (!isSorting) return;
+
+        if (pause) {
+            return;
+        }
+
+
+        if (count < resultStates.length - 1) {
+            setTimeout(() => {
+                setCount(count => count + 1);
+
+            }, 20)
+        }
+
+
+    }, [resultStates, count, pause]);
 
     function generateArray(size: number) {
-        if (isSorting) return;
 
         const max: number = 200
         const min: number = 1
-
         const numberArray: number[] = []
         for (let i = 0; i < size; i++) {
 
             numberArray.push(Math.floor(Math.random() * (max - min) + min));
         }
-        setCount(0)
         setResultStates([{
             comparedNumbers: [],
             numberArray: numberArray
@@ -32,9 +57,7 @@ export function ArraySortContextProvider({children}: {children: React.ReactNode}
 
     }
 
-    useEffect(() => {
-        generateArray(INITIAL_ARRAY_SIZE);
-    }, [])
+
 
     function selectionSort(): void {
         let arrayCopy = [...resultStates[0].numberArray];
@@ -78,8 +101,14 @@ export function ArraySortContextProvider({children}: {children: React.ReactNode}
     }
 
     function increaseCount() {
-        setCount(count => count ++)
+
+        setCount(count => count + 1)
     }
+    function decreaseCount() {
+        setCount(count => count - 1)
+    }
+
+
 
     function chooseSort(sortingMethod : SortMethods) {
 
@@ -87,27 +116,7 @@ export function ArraySortContextProvider({children}: {children: React.ReactNode}
 
             selectionSort();
         }
-
-
-
     }
-
-    useEffect(() => {
-
-
-
-        if (count < resultStates.length - 1) {
-            setIsSorting(true)
-            setTimeout(() => {
-
-                setCount(count => count + 1);
-            }, 50)
-        } else {
-            setIsSorting(false)
-        }
-
-
-    }, [resultStates, count]);
 
 
     const contextData: ArraySort = {
@@ -116,8 +125,15 @@ export function ArraySortContextProvider({children}: {children: React.ReactNode}
         resultStates,
         initialNumberArray,
         count,
+        setCount,
         chooseSort,
-        increaseCount
+        increaseCount,
+        decreaseCount,
+        pause,
+        setPause,
+        isSorting,
+        setIsSorting
+
 
     }
 

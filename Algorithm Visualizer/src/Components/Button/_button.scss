@@ -36,7 +36,8 @@
         }
 
         &:disabled {
-            background-color: white !important;
+            opacity: 25%;
+            cursor: not-allowed;
         }
 
         &--primary {
