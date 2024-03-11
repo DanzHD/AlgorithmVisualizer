@@ -1,4 +1,5 @@
 import {ResultStates} from "./ResultStates.tsx";
+import {SortMethods} from "../../Utils/enum.tsx";
 
 export interface ArraySort {
     generateArray: (size: number) => void,
@@ -6,6 +7,6 @@ export interface ArraySort {
     resultStates: ResultStates[],
     initialNumberArray: number[],
     count: number,
-    chooseSort: () => void,
+    chooseSort: (sortingMethod: SortMethods) => void,
     increaseCount: () => void
 }

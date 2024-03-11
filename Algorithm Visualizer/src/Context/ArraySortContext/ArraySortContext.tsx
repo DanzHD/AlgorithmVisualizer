@@ -1,6 +1,8 @@
 import React, {createContext, useEffect, useState} from "react";
 import {ArraySort} from "./ArraySortInterface.tsx";
 import {ResultStates} from "./ResultStates.tsx";
+import {INITIAL_ARRAY_SIZE} from "../../Utils/Constants.tsx";
+import {SortMethods} from "../../Utils/enum.tsx";
 
 export const ArraySortContext = createContext<ArraySort>({} as ArraySort);
 
@@ -9,9 +11,11 @@ export function ArraySortContextProvider({children}: {children: React.ReactNode}
     const [resultStates, setResultStates] = useState<ResultStates[]>([]);
     const [initialNumberArray] = useState<number[]>([]);
     const [count, setCount] = useState(0);
-
+    const [isSorting, setIsSorting] = useState(false);
 
     function generateArray(size: number) {
+        if (isSorting) return;
+
         const max: number = 200
         const min: number = 1
 
@@ -29,7 +33,7 @@ export function ArraySortContextProvider({children}: {children: React.ReactNode}
     }
 
     useEffect(() => {
-        generateArray(4);
+        generateArray(INITIAL_ARRAY_SIZE);
     }, [])
 
     function selectionSort(): void {
@@ -77,8 +81,12 @@ export function ArraySortContextProvider({children}: {children: React.ReactNode}
         setCount(count => count ++)
     }
 
-    function chooseSort() {
-        selectionSort();
+    function chooseSort(sortingMethod : SortMethods) {
+
+        if (sortingMethod == SortMethods.SELECTION_SORT) {
+
+            selectionSort();
+        }
 
 
 
@@ -87,11 +95,15 @@ export function ArraySortContextProvider({children}: {children: React.ReactNode}
     useEffect(() => {
 
 
+
         if (count < resultStates.length - 1) {
+            setIsSorting(true)
             setTimeout(() => {
 
                 setCount(count => count + 1);
-            }, 100)
+            }, 50)
+        } else {
+            setIsSorting(false)
         }
 
 

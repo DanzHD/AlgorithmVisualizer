@@ -1,0 +1,1 @@
+export const INITIAL_ARRAY_SIZE = 100;
