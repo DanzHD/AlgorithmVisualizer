@@ -75,6 +75,7 @@ export default function SideBar() {
                                 <Text subheading>Select sorting method</Text>
                                 <select ref={sortMethodRef}>
                                     <option value={SortMethods.SELECTION_SORT}>Selection Sort</option>
+                                    <option value={SortMethods.INSERTION_SORT}>Insertion Sort</option>
                                 </select>
                             </div>
                             <div className="step-by-step-checkbox">

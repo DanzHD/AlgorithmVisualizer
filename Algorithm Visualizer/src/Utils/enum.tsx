@@ -1,3 +1,4 @@
 export enum SortMethods {
-    SELECTION_SORT
+    SELECTION_SORT,
+    INSERTION_SORT
 }

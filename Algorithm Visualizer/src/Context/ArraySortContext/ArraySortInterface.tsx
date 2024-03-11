@@ -15,6 +15,7 @@ export interface ArraySort {
     pause: boolean,
     setPause: React.Dispatch<React.SetStateAction<boolean>>,
     isSorting: boolean,
-    setIsSorting: React.Dispatch<React.SetStateAction<boolean>>,
+    setIsSorting: React.Dispatch<React.SetStateAction<boolean>>
+
 
 }

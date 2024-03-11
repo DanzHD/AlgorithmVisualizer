@@ -57,8 +57,6 @@ export function ArraySortContextProvider({children}: {children: React.ReactNode}
 
     }
 
-
-
     function selectionSort(): void {
         let arrayCopy = [...resultStates[0].numberArray];
         let temp;
@@ -100,11 +98,48 @@ export function ArraySortContextProvider({children}: {children: React.ReactNode}
 
     }
 
+    function insertionSort(): void {
+        let arrayCopy = [...resultStates[0].numberArray];
+        let newResultStates: ResultStates[] | ((prevState: ResultStates[]) => ResultStates[]) = [];
+
+        let j;
+
+        for (let i = 1; i < arrayCopy.length; i++) {
+
+            j = i
+            newResultStates = storeResultState(arrayCopy, i, i - 1, newResultStates)
+
+            while (j >= 0 && arrayCopy[j - 1] > arrayCopy[j]) {
+
+                [arrayCopy[j], arrayCopy[j - 1]] = [arrayCopy[j-1], arrayCopy[j]]
+                j -= 1
+                newResultStates = storeResultState(arrayCopy, j - 1, j, newResultStates)
+            }
+
+
+
+        }
+        setResultStates(newResultStates)
+    }
+
+    function storeResultState(arrayCopy, i, j, newResultStates) {
+        arrayCopy = [...arrayCopy]
+        const newResultState = {
+            comparedNumbers: [i, j],
+            numberArray: arrayCopy
+        }
+        return [...newResultStates, newResultState]
+    }
+
     function increaseCount() {
 
         setCount(count => count + 1)
     }
     function decreaseCount() {
+        if (count <= 0) {
+            setCount(resultStates.length - 1);
+            return
+        }
         setCount(count => count - 1)
     }
 
@@ -112,9 +147,12 @@ export function ArraySortContextProvider({children}: {children: React.ReactNode}
 
     function chooseSort(sortingMethod : SortMethods) {
 
-        if (sortingMethod == SortMethods.SELECTION_SORT) {
+        if (sortingMethod === SortMethods.SELECTION_SORT) {
 
             selectionSort();
+        }
+        if (sortingMethod === SortMethods.INSERTION_SORT) {
+            insertionSort()
         }
     }
 
