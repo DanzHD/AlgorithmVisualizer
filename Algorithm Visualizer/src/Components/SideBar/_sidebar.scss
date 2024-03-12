@@ -69,23 +69,27 @@ body {
     box-sizing: border-box;
     margin: 0;
 }
+@include themify($themes) {
 
-.select-array-size, .select-sorting-method {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    .select-array-size, .select-sorting-method {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
 
-    > select {
-        border: none;
-        height: 30px;
-        border-radius: 5px ;
-        padding: 5px;
-        font-size: 16px;
-
-        &:focus {
+        > select {
             border: none;
-            outline: none;
+            height: 30px;
+            border-radius: 5px ;
+            padding: 5px;
+            font-size: 16px;
+            color: themed("text");
+            background-color: themed("accent");
+            &:focus {
+                border: none;
+                outline: none;
+            }
+
         }
     }
 }
