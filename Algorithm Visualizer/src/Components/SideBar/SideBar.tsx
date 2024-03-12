@@ -11,7 +11,7 @@ import {useMediaQuery} from "react-responsive";
 
 
 export default function SideBar() {
-    const [expanded, setExpanded] = useState(false);
+    const [expanded, setExpanded] = useState(true);
     const {resultStates, count, generateArray, chooseSort, setPause, increaseCount, decreaseCount,
         pause, isSorting, setIsSorting, setCount} = useArraySortContext();
     const sortMethodRef = useRef<HTMLSelectElement>(null);
