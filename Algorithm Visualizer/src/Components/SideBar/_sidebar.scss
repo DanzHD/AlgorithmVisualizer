@@ -42,16 +42,11 @@ body {
     cursor: pointer;
 }
 
-.generate-array {
 
-    &--invisible {
-        display: none !important;
-    }
-}
 
-.invisible {
-    display: none !important;
-}
+
+
+
 
 #array-size {
     width: 100%;
@@ -87,6 +82,24 @@ body {
 
 }
 
+.fade-in {
+    opacity: 1;
+    animation: fadeIn 2s linear;
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+
+    }
+}
+
+.invisible {
+    display: none !important;
+}
+
 .step-by-step-checkbox {
     display: flex;
     align-items: center;
@@ -100,7 +113,16 @@ body {
 
 }
 
-.step-by-step-animation {
-    display: flex;
-    justify-content: center;
+@include themify($themes) {
+
+    .step-by-step-animation {
+        display: flex;
+        justify-content: center;
+
+
+        > span[class="material-symbols-outlined"] {
+            color: themed("text");
+            cursor: pointer;
+        }
+    }
 }

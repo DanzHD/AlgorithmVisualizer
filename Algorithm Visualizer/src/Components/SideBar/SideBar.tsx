@@ -61,7 +61,7 @@ export default function SideBar() {
                     <div onClick={() => setExpanded(expanded => !expanded)} className={computedMenuClasses}>
                         menu
                     </div>
-                    <div className={cx("sort-options", {"invisible": !expanded})}>
+                    <div className={cx("sort-options", {"invisible": !expanded, "fade-in": expanded})}>
 
 
                         <>
@@ -118,7 +118,7 @@ export default function SideBar() {
                                                 play_arrow
                                             </span>
                                                 <span onClick={increaseCount} className="material-symbols-outlined">
-                                                navigate_next
+                                                arrow_forward
                                             </span>
                                             </> :
                                             <span onClick={() => setPause(true)} className="material-symbols-outlined">
@@ -139,6 +139,7 @@ export default function SideBar() {
                     </div>
                 </div>
             </div>
+
         </>
     )
 }
