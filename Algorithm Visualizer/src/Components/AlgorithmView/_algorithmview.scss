@@ -1,27 +1,37 @@
 @import "../../Styles/themes";
+@import "../../Styles/vars";
 
 .algorithm-view-container {
     display: flex;
-    justify-content: center;
-    flex-basis: 100%;
+    margin-left: auto;
+    margin-right: auto;
 
     &__numbers {
         width: 60vw;
-        padding-left: 8rem;
-        padding-right: 8rem;
+
         display: flex;
         gap: 1px;
         height: 20px;
     }
 }
 
+@media screen and (max-width: $mobile-width){
+    .algorithm-view-container {
+        display: flex;
 
+        &__numbers {
+            width: 40vw;
+        }
+    }
+
+
+}
 
 @include themify($themes) {
 
     .number {
-        width: 1%;
         background-color: themed("accent");
+
 
         &--red {
             background-color: red;

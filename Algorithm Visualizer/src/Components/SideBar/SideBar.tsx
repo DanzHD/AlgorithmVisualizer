@@ -6,6 +6,7 @@ import Button from "../Button/Button.tsx";
 import Text from "../Text/Text.tsx";
 import {INITIAL_ARRAY_SIZE} from "../../Utils/Constants.tsx";
 import {SortMethods} from "../../Utils/enum.tsx";
+import {useMediaQuery} from "react-responsive";
 
 
 
@@ -19,6 +20,9 @@ export default function SideBar() {
     const computedSideBarContainerClasses = cx('side-bar-container', {
         'side-bar-container--expanded': expanded
     });
+
+    const isMobile = useMediaQuery({query: `(max-width: 768px)`})
+
 
     const computedMenuClasses = cx(
         'material-symbols-outlined',
@@ -68,7 +72,7 @@ export default function SideBar() {
                             <div className="select-array-size">
 
                                 <Text subheading>Select array size</Text>
-                                <input defaultValue={INITIAL_ARRAY_SIZE} onChange={handleSizeChange} id="array-size" type="range" min="5" max="200"/>
+                                <input defaultValue={INITIAL_ARRAY_SIZE} onChange={handleSizeChange} id="array-size" type="range" min="5" max={isMobile ? "100" : "200"}/>
                             </div>
 
                             <div className="select-sorting-method">
