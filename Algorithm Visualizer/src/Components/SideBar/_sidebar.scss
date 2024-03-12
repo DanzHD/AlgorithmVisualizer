@@ -1,19 +1,23 @@
 @import "../../Styles/themes";
 @import "../../Styles/vars";
 
-.side-bar-container {
-    width: 38px;
-    height: 100%;
-    display: block;
-    position: relative;
-    left: 0;
-    box-sizing: border-box;
-    &--expanded {
+@include themify($themes) {
 
-        width: 300px;
+    .side-bar-container {
+        width: 38px;
+        display: block;
+        position: relative;
+        left: 0;
+        box-sizing: border-box;
+        background-color: themed("secondary");
+
+        &--expanded {
+
+            width: 300px;
+
+        }
 
     }
-
 }
 
 @media screen and (max-width: $mobile-width) {
@@ -32,12 +36,9 @@
 @include themify($themes) {
 
     .side-bar {
-        padding-top: 20px;
-        padding-left: 15px;
-        padding-right: 15px;
+        padding: 20px 15px;
         background-color: themed("secondary");
         display: flex;
-        height: 100%;
         width: 100%;
         left: 0;
         flex-direction: column;
