@@ -3,23 +3,37 @@
 .side-bar-container {
     width: 38px;
     height: 100%;
-    transition: 1.5s cubic-bezier(.36,-0.01,0,.77);
     display: block;
     position: relative;
     left: 0;
     box-sizing: border-box;
-
     &--expanded {
         width: 300px;
+
     }
+
+    @keyframes closeSideBar {
+        0% {
+            width: 300px;
+        }
+
+        100% {
+            width: 30px;
+        }
+    }
+
+
+
+
+
 }
 
 
 @include themify($themes) {
 
     .side-bar {
-        padding-left: 4px;
-        padding-right: 4px;
+        padding-left: 15px;
+        padding-right: 15px;
         background-color: themed("secondary");
         display: flex;
         height: 100%;
