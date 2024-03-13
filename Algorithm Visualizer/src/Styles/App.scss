@@ -5,6 +5,12 @@
 
 .material-symbols-outlined.light {
     cursor: pointer;
+    color: black;
+}
+
+.material-symbols-outlined {
+    user-select: none;
+    -moz-user-select: none;
 }
 
 .main-content-section {
