@@ -178,6 +178,86 @@ export function ArraySortContextProvider({children}: {children: React.ReactNode}
         }
     }
 
+    function mergeSort(array: number[]) {
+
+        const n: number = array.length;
+
+        for (let currSize = 1; currSize < n; currSize *= 2) {
+
+            for (let leftStart = 0; leftStart < n - 1; leftStart += 2 * currSize) {
+
+                const mid = Math.min(leftStart + currSize - 1, n - 1);
+                const rightEnd = Math.min(leftStart + 2 * currSize - 1, n - 1);
+
+                merge(array, leftStart, mid, rightEnd);
+            }
+        }
+
+        return array;
+
+
+    }
+
+    function merge(arr: number[] , l: number , m: number , r: number) {
+        let i, j, k;
+        const n1: number = m - l + 1;
+        const n2: number = r - m;
+
+        /* create temp arrays */
+        const L: number[] = Array(n1).fill(0);
+        const R: number[] = Array(n2).fill(0);
+
+        /*
+         * Copy data to temp arrays L and R
+         */
+        for (i = 0; i < n1; i++)
+            L[i] = arr[l + i];
+        for (j = 0; j < n2; j++)
+            R[j] = arr[m + 1 + j];
+
+        /*
+         * Merge the temp arrays back into arr[l..r]
+         */
+        i = 0;
+        j = 0;
+        k = l;
+        while (i < n1 && j < n2) {
+            storeResultState(arr, l + i, m + 1 + j);
+            if (L[i] <= R[j]) {
+                arr[k] = L[i];
+                storeResultState(arr, l + i, m + 1 + j);
+
+                i++;
+            } else {
+
+                arr[k] = R[j];
+                storeResultState(arr, l + i, m + 1 + j);
+
+                j++;
+            }
+            k++;
+        }
+
+        /*
+         * Copy the remaining elements of L, if there are any
+         */
+        while (i < n1) {
+            arr[k] = L[i];
+            i++;
+            k++;
+        }
+
+        /*
+         * Copy the remaining elements of R, if there are any
+         */
+        while (j < n2) {
+            arr[k] = R[j];
+            j++;
+            k++;
+        }
+    }
+
+
     function storeResultState(arrayCopy: number[], ...comparedNumbers: number[]) {
         arrayCopy = [...arrayCopy]
         const newResultState = {
@@ -217,6 +297,11 @@ export function ArraySortContextProvider({children}: {children: React.ReactNode}
         if (sortingMethod === SortMethods.QUICK_SORT) {
 
             quickSort([...resultStates[0].numberArray], 0, resultStates[0].numberArray.length);
+        }
+
+        if (sortingMethod === SortMethods.MERGE_SORT) {
+
+            console.log(mergeSort([...resultStates[0].numberArray]));
         }
     }
 

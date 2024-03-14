@@ -81,6 +81,7 @@ export default function SideBar() {
                                     <option value={SortMethods.SELECTION_SORT}>Selection Sort</option>
                                     <option value={SortMethods.INSERTION_SORT}>Insertion Sort</option>
                                     <option value={SortMethods.QUICK_SORT}>Quick Sort</option>
+                                    <option value={SortMethods.MERGE_SORT}>Merge Sort</option>
                                 </select>
                             </div>
                             <div className="step-by-step-checkbox">
