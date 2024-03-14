@@ -225,13 +225,13 @@ export function ArraySortContextProvider({children}: {children: React.ReactNode}
             storeResultState(arr, l + i, m + 1 + j);
             if (L[i] <= R[j]) {
                 arr[k] = L[i];
-                storeResultState(arr, l + i, m + 1 + j);
+                storeResultState(arr, k, m + 1 + j);
 
                 i++;
             } else {
 
                 arr[k] = R[j];
-                storeResultState(arr, l + i, m + 1 + j);
+                storeResultState(arr, k, m + 1 + j);
 
                 j++;
             }
@@ -243,6 +243,7 @@ export function ArraySortContextProvider({children}: {children: React.ReactNode}
          */
         while (i < n1) {
             arr[k] = L[i];
+            storeResultState(arr, l + i, m + 1 + j);
             i++;
             k++;
         }
@@ -252,9 +253,12 @@ export function ArraySortContextProvider({children}: {children: React.ReactNode}
          */
         while (j < n2) {
             arr[k] = R[j];
+            storeResultState(arr, l + i, m + 1 + j);
             j++;
             k++;
         }
+
+
     }
 
 
@@ -296,7 +300,7 @@ export function ArraySortContextProvider({children}: {children: React.ReactNode}
 
         if (sortingMethod === SortMethods.QUICK_SORT) {
 
-            quickSort([...resultStates[0].numberArray], 0, resultStates[0].numberArray.length);
+            quickSort([...resultStates[0].numberArray], 0, resultStates[0].numberArray.length - 1);
         }
 
         if (sortingMethod === SortMethods.MERGE_SORT) {
