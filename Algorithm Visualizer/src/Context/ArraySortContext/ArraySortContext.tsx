@@ -261,6 +261,49 @@ export function ArraySortContextProvider({children}: {children: React.ReactNode}
 
     }
 
+    function heapSort(array: number[]) {
+        heapify(array);
+        let n = array.length;
+
+        while (n > 0) {
+            swap(array, 0, n - 1);
+            n -= 1;
+            downHeap(array, 0, n);
+        }
+
+
+
+    }
+
+    function heapify(array: number[]) {
+        for (let i = array.length - 1; i >= 0; i--) {
+            downHeap(array, i, array.length);
+        }
+    }
+
+    function downHeap(array: number[], i: number, n: number) {
+        let j: number;
+        while (i < Math.floor(n / 2)) {
+            j = (2 * i) + 1
+
+            if (j + 1 < n && array[j] < array[j + 1]) {
+                j += 1
+            }
+            if (j + 1 < n) {
+                storeResultState(array, j, j + 1);
+            }
+            storeResultState(array, i, j)
+            if (array[i] < array[j]) {
+                swap(array, i, j);
+                i = j;
+            } else {
+                break;
+            }
+
+        }
+
+    }
+
 
     function storeResultState(arrayCopy: number[], ...comparedNumbers: number[]) {
         arrayCopy = [...arrayCopy]
@@ -306,6 +349,10 @@ export function ArraySortContextProvider({children}: {children: React.ReactNode}
         if (sortingMethod === SortMethods.MERGE_SORT) {
 
             console.log(mergeSort([...resultStates[0].numberArray]));
+        }
+
+        if (sortingMethod === SortMethods.HEAP_SORT) {
+            heapSort([...resultStates[0].numberArray]);
         }
     }
 
