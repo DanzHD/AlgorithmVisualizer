@@ -270,6 +270,7 @@ export function ArraySortContextProvider({children}: {children: React.ReactNode}
             n -= 1;
             downHeap(array, 0, n);
         }
+        storeResultState(array);
 
 
 
@@ -295,6 +296,7 @@ export function ArraySortContextProvider({children}: {children: React.ReactNode}
             storeResultState(array, i, j)
             if (array[i] < array[j]) {
                 swap(array, i, j);
+                storeResultState(array, i, j);
                 i = j;
             } else {
                 break;
