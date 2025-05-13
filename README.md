@@ -1,6 +1,6 @@
 # Algorithm Visualizer
 
-https://algorithm-visualizer-f6362uhnt-danzorrs-projects.vercel.app/
+https://algorithm-visualizer-kohl-zeta.vercel.app/
 
 ##
 
